@@ -1,8 +1,9 @@
 import React from 'react';
+import HomePage from '../components/HomePage';
 
 function Home (){
   return (
-      <h1>Welcome to Ivanti App Market!</h1>
+      <HomePage />
   );
 };
 

@@ -37,7 +37,7 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
 
     @Override
     public ArrayList<Application> getApplications() {
-        return null;
+        return database.applications;
     }
 
     @Override

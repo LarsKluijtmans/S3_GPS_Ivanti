@@ -25,7 +25,6 @@ const Creator = () => {
 
     useEffect(() => {
         getCreator();
-        // fakeCreator();
     }, []);
 
 
