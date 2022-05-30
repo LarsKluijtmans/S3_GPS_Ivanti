@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import s3_gps_ivanti.business.login.AccessTokenDecoder;
 import s3_gps_ivanti.business.exception.InvalidAccessTokenException;
-import s3_gps_ivanti.dto.Login.AccessTokenDTO;
+import s3_gps_ivanti.dto.login.AccessTokenDTO;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;

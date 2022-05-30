@@ -1,4 +1,4 @@
-package s3_gps_ivanti.dto.Login;
+package s3_gps_ivanti.dto.login;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;

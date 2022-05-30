@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import s3_gps_ivanti.business.Login.LoginUseCase;
-import s3_gps_ivanti.dto.Login.LoginRequestDTO;
-import s3_gps_ivanti.dto.Login.LoginResponseDTO;
+import s3_gps_ivanti.business.login.LoginUseCase;
+import s3_gps_ivanti.dto.login.LoginRequestDTO;
+import s3_gps_ivanti.dto.login.LoginResponseDTO;
 
 import javax.validation.Valid;
 

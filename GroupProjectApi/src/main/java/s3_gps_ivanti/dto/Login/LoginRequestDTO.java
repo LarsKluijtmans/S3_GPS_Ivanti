@@ -1,4 +1,4 @@
-package s3_gps_ivanti.dto.Login;
+package s3_gps_ivanti.dto.login;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

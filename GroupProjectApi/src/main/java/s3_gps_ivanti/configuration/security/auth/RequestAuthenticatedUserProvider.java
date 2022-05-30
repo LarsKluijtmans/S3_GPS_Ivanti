@@ -8,7 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.context.WebApplicationContext;
-import s3_gps_ivanti.dto.Login.AccessTokenDTO;
+import s3_gps_ivanti.dto.login.AccessTokenDTO;
 
 @Configuration
 public class RequestAuthenticatedUserProvider {

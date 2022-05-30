@@ -1,7 +1,7 @@
-package s3_gps_ivanti.business.Login;
+package s3_gps_ivanti.business.login;
 
 
-import s3_gps_ivanti.dto.Login.AccessTokenDTO;
+import s3_gps_ivanti.dto.login.AccessTokenDTO;
 
 public interface AccessTokenEncoder {
     String encode(AccessTokenDTO accessTokenDTO);

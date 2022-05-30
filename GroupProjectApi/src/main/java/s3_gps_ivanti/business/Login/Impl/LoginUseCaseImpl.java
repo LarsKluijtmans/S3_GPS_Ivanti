@@ -1,21 +1,21 @@
-package s3_gps_ivanti.business.Login.Impl;
+package s3_gps_ivanti.business.login.impl;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import s3_gps_ivanti.business.Login.AccessTokenEncoder;
-import s3_gps_ivanti.business.Login.LoginUseCase;
 import s3_gps_ivanti.business.exception.InvalidCredentialsException;
-import s3_gps_ivanti.dto.Login.AccessTokenDTO;
-import s3_gps_ivanti.dto.Login.LoginRequestDTO;
-import s3_gps_ivanti.dto.Login.LoginResponseDTO;
+import s3_gps_ivanti.business.login.AccessTokenEncoder;
+import s3_gps_ivanti.business.login.LoginUseCase;
+import s3_gps_ivanti.dto.login.AccessTokenDTO;
+import s3_gps_ivanti.dto.login.LoginRequestDTO;
+import s3_gps_ivanti.dto.login.LoginResponseDTO;
 import s3_gps_ivanti.repository.UserRepository;
 import s3_gps_ivanti.repository.entity.User;
 
-import java.util.List;
-
 @Service
+@Primary
 @RequiredArgsConstructor
 public class LoginUseCaseImpl implements LoginUseCase {
 
@@ -26,7 +26,7 @@ public class LoginUseCaseImpl implements LoginUseCase {
     @Override
     public LoginResponseDTO login(LoginRequestDTO loginRequest) {
         User user = userRepository.findUserByUsername(loginRequest.getUsername());
-        if (user == null) {
+        if (!userRepository.existsByUsername(loginRequest.getUsername())) {
             throw new InvalidCredentialsException();
         }
 
@@ -45,7 +45,7 @@ public class LoginUseCaseImpl implements LoginUseCase {
         return passwordEncoder.matches(rawPassword, encodedPassword);
     }
 
-    private String generateAccessToken(User user) {
+    public String generateAccessToken(User user) {
         return accessTokenEncoder.encode(
                 AccessTokenDTO.builder()
                         .subject(user.getUsername())
