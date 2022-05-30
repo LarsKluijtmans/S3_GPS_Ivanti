@@ -3,7 +3,7 @@ package s3_gps_ivanti.business.version.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
-import s3_gps_ivanti.business.dtoconvertor.VersionDTOConverter;
+import s3_gps_ivanti.business.dtoConvertor.VersionDTOConverter;
 import s3_gps_ivanti.business.exception.ApplicationNotFoundException;
 import s3_gps_ivanti.business.exception.VersionNumberIncorrectException;
 import s3_gps_ivanti.business.version.CreateMinorVersionUseCase;

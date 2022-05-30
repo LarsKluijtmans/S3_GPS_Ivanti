@@ -5,10 +5,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import s3_gps_ivanti.business.user.*;
+import s3_gps_ivanti.configuration.security.isauthenticated.IsAuthenticated;
 import s3_gps_ivanti.dto.user.*;
 import s3_gps_ivanti.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 
+import javax.annotation.security.RolesAllowed;
 import javax.swing.text.html.parser.Entity;
 import java.net.URI;
 import java.util.List;
@@ -26,20 +28,7 @@ public class UserController {
     private final GetCustomerUseCase getCustomer;
     private final UpdateCustomerUseCase updateCustomer;
 
-    @GetMapping()
-    public ResponseEntity<List<CustomerBasicInfoDTO>> getUsers() {
-        return ResponseEntity.ok().body(getCustomers.getAllCustomers());
-    }
-    @GetMapping("/{id}")
-    public ResponseEntity<CustomerDetailedInfoDTO> getUser(@PathVariable String username) {
-        CustomerDetailedInfoDTO customerDetailedInfoDTO = getCustomer.getCustomer(username);
-
-        if(customerDetailedInfoDTO == null) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok().body(getCustomer.getCustomer(username));
-    }
+    //All
     @PostMapping()
     public ResponseEntity<CreateCustomerResponseDTO> createUser(@RequestBody CreateCustomerRequestDTO user) {
         CreateCustomerResponseDTO customerResponseDTO = createCustomer.createCustomer(user);
@@ -50,11 +39,41 @@ public class UserController {
 
         return ResponseEntity.ok().body(customerResponseDTO);
     }
+
+
+    //Queen
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_QueenAccess"})
+    @GetMapping()
+    public ResponseEntity<List<CustomerBasicInfoDTO>> getUsers() {
+        return ResponseEntity.ok().body(getCustomers.getAllCustomers());
+    }
+
+    //Customer and Creator
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Customer", "ROLE_Creator"})
+    @GetMapping("/{id}")
+    public ResponseEntity<CustomerDetailedInfoDTO> getUser(@PathVariable String username) {
+        CustomerDetailedInfoDTO customerDetailedInfoDTO = getCustomer.getCustomer(username);
+
+        if(customerDetailedInfoDTO == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok().body(getCustomer.getCustomer(username));
+    }
+
+    //Customer
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Customer"})
     @PutMapping()
     public ResponseEntity<Object> updateCustomer(@RequestBody UpdateCustomerRequestDTO updatedUser) {
         updateCustomer.updateCustomer(updatedUser);
         return ResponseEntity.ok().build();
     }
+
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Customer"})
     @DeleteMapping("/{id}")
     public ResponseEntity<Object>  deleteUser(@PathVariable String id) {
         deleteCustomer.DeleteCustomer(id);

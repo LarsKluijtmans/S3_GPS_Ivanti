@@ -1,4 +1,4 @@
-package s3_gps_ivanti.business.dtoconvertor;
+package s3_gps_ivanti.business.dtoConvertor;
 
 import s3_gps_ivanti.dto.version.*;
 import s3_gps_ivanti.repository.entity.Version;

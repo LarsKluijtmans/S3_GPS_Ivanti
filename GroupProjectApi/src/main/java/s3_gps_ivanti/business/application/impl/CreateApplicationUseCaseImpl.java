@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import s3_gps_ivanti.business.application.CreateApplicationUseCase;
-import s3_gps_ivanti.business.dtoconvertor.ApplicationDTOConverter;
+import s3_gps_ivanti.business.dtoConvertor.ApplicationDTOConverter;
 import s3_gps_ivanti.business.exception.ApplicationNameNotUnique;
 import s3_gps_ivanti.dto.application.CreateApplicationRequestDTO;
 import s3_gps_ivanti.dto.application.CreateApplicationResponseDTO;

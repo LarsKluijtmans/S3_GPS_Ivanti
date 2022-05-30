@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.*;
 import s3_gps_ivanti.business.review.CreateReviewUseCase;
 import s3_gps_ivanti.business.review.DeleteReviewUseCase;
 import s3_gps_ivanti.business.review.UpdateReviewUseCase;
+import s3_gps_ivanti.configuration.security.isauthenticated.IsAuthenticated;
 import s3_gps_ivanti.dto.review.CreateReviewRequestDTO;
 import s3_gps_ivanti.dto.review.CreateReviewResponseDTO;
 import s3_gps_ivanti.dto.review.UpdateReviewRequestDTO;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.ArrayList;
 
 @RestController
@@ -25,16 +27,24 @@ public class ReviewController {
    private final DeleteReviewUseCase deleteReviewService;
    private final UpdateReviewUseCase updateReviewService;
 
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Customer"})
     @PostMapping()
     public ResponseEntity<CreateReviewResponseDTO>  createReview(@RequestBody CreateReviewRequestDTO review) {
         CreateReviewResponseDTO response = createReviewService.createReview(review);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Customer"})
     @PutMapping()
     public ResponseEntity<Object>  updateReview(@RequestBody UpdateReviewRequestDTO review) {
         updateReviewService.updateReview(review);
         return ResponseEntity.noContent().build();
     }
+
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Customer"})
     @DeleteMapping("/{reviewID}")
     public ResponseEntity<Object>  deleteReview(@PathVariable("reviewID") String reviewID) {
         deleteReviewService.deleteReview(reviewID);
