@@ -9,8 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import s3_gps_ivanti.business.application.*;
 import s3_gps_ivanti.business.version.UpdateVersionUseCase;
+import s3_gps_ivanti.configuration.security.isauthenticated.IsAuthenticated;
 import s3_gps_ivanti.dto.application.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.net.URI;
 import java.util.List;
 
@@ -51,6 +53,8 @@ public class ApplicationController {
     }
 
     //Content Creator
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Creator"})
     @PostMapping()
     public ResponseEntity<CreateApplicationResponseDTO> createApplications(@RequestBody CreateApplicationRequestDTO application) {
 
@@ -65,12 +69,18 @@ public class ApplicationController {
             return ResponseEntity.created(uri).build();
         }
     }
+
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Creator"})
     @PutMapping()
     public ResponseEntity<Object> updateApplications(@RequestBody UpdateApplicationRequestDTO application) {
 
         updateApplication.updateApplications(application);
         return ResponseEntity.noContent().build();
     }
+
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Creator"})
     @DeleteMapping({"{applicationID}"})
     public ResponseEntity<Object> deleteApplications(@PathVariable("applicationID") String applicationID) {
 

@@ -3,7 +3,7 @@ package s3_gps_ivanti.business.user.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
-import s3_gps_ivanti.business.dtoconvertor.CustomerDTOConverter;
+import s3_gps_ivanti.business.dtoConvertor.CustomerDTOConverter;
 import s3_gps_ivanti.business.exception.CustomerNotFoundException;
 import s3_gps_ivanti.business.exception.EmailAlreadyExistsException;
 import s3_gps_ivanti.business.exception.UsernameAlreadyExistsException;
@@ -26,11 +26,13 @@ public class UpdateCustomerUseCaseImpl implements UpdateCustomerUseCase {
     public void updateCustomer(UpdateCustomerRequestDTO customerRequestDTO) {
 
         //TODO check token.userid
-        if(userRepository.findUserByUsername(customerRequestDTO.getUsername()) != null) {
+        if(userRepository.findUserByUsername(customerRequestDTO.getUsername()) != null
+                && !(userRepository.findUserByUsername(customerRequestDTO.getUsername()).getId().equals(customerRequestDTO.getId()))) {
             throw new UsernameAlreadyExistsException();
         }
 
-        if(userRepository.findUserByEmail(customerRequestDTO.getUsername()) != null) {
+        if(userRepository.findUserByEmail(customerRequestDTO.getEmail()) != null
+                && !(userRepository.findUserByEmail(customerRequestDTO.getEmail()).getId().equals(customerRequestDTO.getId()))) {
             throw new EmailAlreadyExistsException();
         }
 

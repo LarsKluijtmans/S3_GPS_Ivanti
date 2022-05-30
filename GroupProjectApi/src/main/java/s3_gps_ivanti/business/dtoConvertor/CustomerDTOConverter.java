@@ -1,4 +1,4 @@
-package s3_gps_ivanti.business.dtoconvertor;
+package s3_gps_ivanti.business.dtoConvertor;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import s3_gps_ivanti.dto.user.*;

@@ -1,4 +1,4 @@
-package s3_gps_ivanti.business.dtoconvertor;
+package s3_gps_ivanti.business.dtoConvertor;
 
 import s3_gps_ivanti.dto.review.CreateReviewRequestDTO;
 import s3_gps_ivanti.dto.review.ReviewDTO;

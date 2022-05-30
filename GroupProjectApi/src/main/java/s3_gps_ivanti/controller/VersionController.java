@@ -6,10 +6,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import s3_gps_ivanti.business.application.GetApplicationDetailedInfoUseCase;
 import s3_gps_ivanti.business.version.*;
+import s3_gps_ivanti.configuration.security.isauthenticated.IsAuthenticated;
 import s3_gps_ivanti.dto.application.ApplicationDetailedInfoDTO;
 import s3_gps_ivanti.dto.version.*;
 import s3_gps_ivanti.repository.entity.Application;
 
+import javax.annotation.security.RolesAllowed;
 import java.net.URI;
 
 @RestController
@@ -25,6 +27,8 @@ public class VersionController {
     private final UpdateVersionUseCase updateVersion;
 
 
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Creator"})
     @GetMapping("/{applicationName}")
     public ResponseEntity<Double>getLatestVersion(@PathVariable("applicationName")  String applicationName) {
 
@@ -36,6 +40,9 @@ public class VersionController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Creator"})
     @PostMapping("/major")
     public ResponseEntity<CreateMajorVersionResponseDTO> createMajorVersion(@RequestBody CreateMajorVersionRequestDTO createVersionDTO) {
 
@@ -50,6 +57,9 @@ public class VersionController {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
     }
+
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Creator"})
     @PostMapping("/minor")
     public ResponseEntity<CreateMinorVersionResponseDTO> createMinorVersion(@RequestBody CreateMinorVersionRequestDTO createVersionDTO) {
 
@@ -64,12 +74,18 @@ public class VersionController {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
     }
+
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_QueenAccess"})
     @PutMapping() //This code is here only to take up space
     public ResponseEntity<Object> updateVersion(@RequestBody UpdateVersionRequestDTO updateVersionDTO) {
 
         updateVersion.updateVersion(updateVersionDTO);
         return ResponseEntity.ok().build();
     }
+
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_QueenAccess"})
     @DeleteMapping({"/{applicationID}/{versionNumber}"})
     public ResponseEntity<Object> deleteVersion(@PathVariable("applicationID") String applicationID, @PathVariable("versionNumber")  double versionNumber) {
 

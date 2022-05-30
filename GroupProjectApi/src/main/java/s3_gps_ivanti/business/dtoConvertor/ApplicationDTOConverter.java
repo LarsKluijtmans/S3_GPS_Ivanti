@@ -1,4 +1,4 @@
-package s3_gps_ivanti.business.dtoconvertor;
+package s3_gps_ivanti.business.dtoConvertor;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import s3_gps_ivanti.dto.application.*;
@@ -70,7 +70,6 @@ public class ApplicationDTOConverter {
                 .totalDownloads(totalDownloads)
                 .avgRating(avgRating)
                 .versions(VersionDTOConverter.convertToListOfDTO(application.getVersions()))
-                .reviews(ReviewDTOConverter.convertToListOfDTO(application.getReviews()))
                 .build();
     }
 

@@ -3,7 +3,7 @@ package s3_gps_ivanti.business.review.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
-import s3_gps_ivanti.business.dtoconvertor.ReplyDTOConverter;
+import s3_gps_ivanti.business.dtoConvertor.ReplyDTOConverter;
 import s3_gps_ivanti.business.review.UpdateReviewUseCase;
 import s3_gps_ivanti.business.validation.ReviewIDValidation;
 import s3_gps_ivanti.dto.review.CreateUpdateDeleteReplyDTO;
