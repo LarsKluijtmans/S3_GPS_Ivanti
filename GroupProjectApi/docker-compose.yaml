@@ -6,10 +6,10 @@ services:
     ports:
       - "27017:27017"
     volumes:
-    - data:/data
+    - data:/data/db
     environment:
       - MONGO_INITDB_ROOT_USERNAME= nrmvoid
-      - MONGO_INITDB_ROOT_PASSWORD=.Clarinet4rt.V0id.D
+      - MONGO_INITDB_ROOT_PASSWORD=password123
 
   ivanti-AppMarket:
     image: mongo-express
@@ -20,7 +20,7 @@ services:
     environment:
       - spring.data.mongodb.host=mongodb
 volumes:
-    data: {}
+  data: {}
 
 networks:
   default:

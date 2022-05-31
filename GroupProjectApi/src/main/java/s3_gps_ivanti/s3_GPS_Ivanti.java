@@ -7,8 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import s3_gps_ivanti.repository.*;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import s3_gps_ivanti.repository.entity.*;
-
 import java.util.List;
 
 @EnableMongoRepositories

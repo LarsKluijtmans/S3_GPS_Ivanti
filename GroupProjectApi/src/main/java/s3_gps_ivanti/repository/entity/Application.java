@@ -30,6 +30,6 @@ public class Application {
     private RatingAnalytics rating;
 
     @ReadOnlyProperty
-    @DocumentReference(lookup="{'applicationId':?#{#self._id} }")
+    @DocumentReference(lookup="{'applicationId':?#{#self._id} }") //read only. applicationId connects with review
     private List<Review> reviews;
 }
