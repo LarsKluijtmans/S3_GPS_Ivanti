@@ -22,7 +22,6 @@ public class GetApplicationByCreatorUseCaseImpl implements GetApplicationByCreat
     @Override
     public CreatorApplicationListDTO getApplicationsByCreator(String username) {
         User creator = userRepository.findUserByUsername(username);
-
         return null;
     }
 }

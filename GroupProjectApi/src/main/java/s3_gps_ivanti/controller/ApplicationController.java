@@ -3,6 +3,7 @@ package s3_gps_ivanti.controller;
 
 import lombok.RequiredArgsConstructor;
 
+import org.flywaydb.core.internal.util.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import s3_gps_ivanti.dto.application.*;
 
 import javax.annotation.security.RolesAllowed;
 import java.net.URI;
+import java.util.List;
 
 
 @RestController
@@ -40,20 +42,6 @@ public class ApplicationController {
        return ResponseEntity.ok().body(applicationDetailedInfoDTO);
     }
 
-//    @GetMapping
-//    public ResponseEntity<List<ApplicationBasicInfoDTO>> getAllApplications(){
-//        List<ApplicationBasicInfoDTO> allApplications = getApplicationsBasicInfo.getApplications();
-//
-//        if (allApplications == null) {
-//            return ResponseEntity.notFound().build();
-//        }
-//        return ResponseEntity.ok().body(allApplications);
-//    }
-
-    @GetMapping
-    public ResponseEntity<GetAllApplicationsResponseDTO> getAllApplications() {
-        return ResponseEntity.ok(getApplicationsBasicInfo.getAllApplications());
-    }
 
     //Content Creator
 
@@ -92,38 +80,33 @@ public class ApplicationController {
     //TODO fix this
 
 
-   /*  @GetMapping("creator/{id}")
-    public ResponseEntity<List<ApplicationBasicInfoDTO>> getApplicationsByCreator(@PathVariable int id, @RequestParam(value = "name", required = false) String name, @RequestParam(value = "sort", required = false) String sort) {
-        ArrayList<Application> applications;
+    @GetMapping
+    public ResponseEntity<GetAllApplicationsResponseDTO> getAllApplications(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "sort", required = false) String sort) {
+        GetAllApplicationsRequestDTO request = new GetAllApplicationsRequestDTO();
+        request.setName(name);
+        request.setStatus(false);
 
-        if (StringUtils.hasText(name)) {
-            applications = applicationService.getApplicationsByCreatorIdAndName(id, name);
-        } else {
-            applications = applicationService.getApplicationsByCreatorId(id);
-        }
-
-        ArrayList<ApplicationBasicInfoDTO> applicationsDTO  = new ArrayList<>();
-
-        if (!applications.isEmpty()) {
-            if (StringUtils.hasText(sort)) {
-                switch (sort) {
-                    case "nameDesc" -> applicationService.sortApplicationsByName(applications, false);
-                    case "ratingAsc" -> applicationService.sortApplicationsByRating(applications, true);
-                    case "ratingDesc" -> applicationService.sortApplicationsByRating(applications, false);
-                    default -> applicationService.sortApplicationsByName(applications, true);
+        if (StringUtils.hasText(sort)) {
+            switch (sort) {
+                case "nameAsc" -> {
+                    request.setOrderByName(true);
+                    request.setAscending(true);
                 }
-            } else {
-                applicationService.sortApplicationsByName(applications, true);
+                case "nameDesc" -> {
+                    request.setOrderByName(true);
+                    request.setAscending(false);
+                }
+                case "ratingAsc" -> {
+                    request.setOrderByName(false);
+                    request.setAscending(true);
+                }
+                case "ratingDesc" -> {
+                    request.setOrderByName(false);
+                    request.setAscending(false);
+                }
             }
-
-            for (Application a : applications) {
-                ApplicationBasicInfoDTO applicationDTO = new ApplicationBasicInfoDTO(a);
-                applicationsDTO.add(applicationDTO);
-            }
-
-            return ResponseEntity.ok().body(applicationsDTO);
         }
 
-        return ResponseEntity.notFound().build();
-    }*/
+        return ResponseEntity.ok(getApplicationsBasicInfo.getAllApplications(request));
+    }
 }
