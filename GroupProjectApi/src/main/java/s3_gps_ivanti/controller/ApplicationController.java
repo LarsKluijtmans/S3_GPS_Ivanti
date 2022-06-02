@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import s3_gps_ivanti.business.application.*;
 import s3_gps_ivanti.configuration.security.isauthenticated.IsAuthenticated;
 import s3_gps_ivanti.dto.application.*;
+import s3_gps_ivanti.dto.creator.CreatorApplicationListDTO;
 
 import javax.annotation.security.RolesAllowed;
 import java.net.URI;
@@ -25,6 +26,7 @@ public class ApplicationController {
     private final GetApplicationDetailedInfoUseCase getApplicationDetailedInfo;
     private final GetApplicationsBasicInfoUseCase getApplicationsBasicInfo;
     private final UpdateApplicationUseCase updateApplication;
+    private final GetApplicationByCreatorUseCase getApplicationByCreator;
 
 
     //All
@@ -91,7 +93,14 @@ public class ApplicationController {
 
     //TODO fix this
 
-
+    @GetMapping("/creator/{username}")
+    public ResponseEntity<CreatorApplicationListDTO> getApplicationsByCreator(@PathVariable("username") String username) {
+        CreatorApplicationListDTO creatorApplicationListDTO = getApplicationByCreator.getApplicationsByCreator(username);
+        if (creatorApplicationListDTO == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(creatorApplicationListDTO);
+    }
    /*  @GetMapping("creator/{id}")
     public ResponseEntity<List<ApplicationBasicInfoDTO>> getApplicationsByCreator(@PathVariable int id, @RequestParam(value = "name", required = false) String name, @RequestParam(value = "sort", required = false) String sort) {
         ArrayList<Application> applications;

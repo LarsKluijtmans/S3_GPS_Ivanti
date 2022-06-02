@@ -99,7 +99,7 @@ function Navbar() {
                         <Link className='NavLink' to="/all-apps">All Apps</Link>
                         <Link className="NavLink" to="/creator/analytics">Analytics</Link>
                         <Link className="NavLink" to="/creator/1/notifications">Notifications</Link>
-                        <Link className="NavLink" to="/creator/:id/myApps">Notifications</Link>
+                        <Link className="NavLink" to="/my-account/creator">my Apps</Link>
                         <div className="NavTranslate">Translate<FontAwesomeIcon className="NavIcon" icon={faGlobe} /></div>
                         <div className="NavDropdown">
                             <button className="dropdown-button" onClick={showContent}>{localStorage.getItem("username")}<FontAwesomeIcon className="NavIcon" icon={faCaretDown} /></button>
@@ -123,7 +123,7 @@ function Navbar() {
                             <Route path='/app/:name' element={<ApplicationDetailedPage />} />
                             <Route path='/all-apps' element={<AllApplicationsPage />} />
                             <Route path='/app/:name' element={<ApplicationDetailedPage />} />
-                            <Route path="/creator/:id/myApps" element={<MyAppsPage />}/>
+                            <Route path="/my-account/:username" element={<MyAppsPage />}/>
                             <Route path="/creator/:id/myApps/:appName/updateApplication" element={<UpdateApplicationPage />}/>
                             <Route path="/creator/:id/myApps/addApplication" element={<AddApplicationPage/>}/>
                             <Route path="/creator/:id/myApps/:appName" element={<ApplicationPage />} />
@@ -131,6 +131,7 @@ function Navbar() {
                             <Route path='/creator/:id/myApps/:name/addMajorVersion' element={<AddMajorVersionPage />} />
                             <Route path="/login" element={<LogInPage login={login}/>} />
                             <Route path="/*" element={<ErrorPage />} />
+                            <Route path="/creator/myApps/:name" element={<ApplicationPage />} />
                             <Route path="/creator/analytics" element={<AnalyticsPage/>}/>
                         </Routes>
                     </div>

@@ -18,7 +18,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Transactional
 public class GetApplicationBasicInfoUseCaseImpl implements GetApplicationsBasicInfoUseCase {
-
     private final ApplicationRepository applicationRepository;
 
 //    @Override

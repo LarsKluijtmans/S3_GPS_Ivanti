@@ -5,50 +5,22 @@ import '../../../styles/ContentCreator/MyAppsPage/MyAppsPage.css';
 import { useParams, Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCaretDown, faCirclePlus, faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
+import ApplicationBasicCreator from './ApplicationBasicCreator';
 
 const MyAppsPage = () => {
-    const [applications, setApplications] = useState({});
-
+    const [applicationsArray, setApplicationsArray] = useState({});
     const [name, setName] = useState('');
-
     const [sort, setSort] = useState('');
-
-    const {id} = useParams();
 
     let urlParams = new URLSearchParams(window.location.search);
 
-    const [creator, setCreator] = useState({});
+    const {username} = useParams();
 
-    let token = localStorage.getItem("token");
-    const config = {
-        headers: { Authorization: `Bearer ${token}` }
-    };
-
-    const getCreator = () => {
-        axios.get(`http://localhost:8080/user/${id}`, config)
-            .then(response => {
-                setCreator(response.data);
-                console.log(response.data);
-            })
-            .catch(err => {
-                console.log(err);
-            })
-    }
-
-   useEffect(() => {
-        getCreator();
-    }, []);
-
-    /* function getApplicationsByCreator() {
-        axios.get(`http://localhost:8080/application/creator/${id}`, {
-            params: {
-                name: urlParams.get('name'),
-                sort: urlParams.get('sort')
-            }
-        })
-            .then(response => {
-                setApplications(response.data);
-                console.log(applications);
+    const getApplications = () => {
+        axios.get(`http://localhost:8080/application/creator/${username}`)
+            .then(res => {
+                setApplicationsArray(res.data);
+                console.log(res.data);
             })
             .catch(err => {
                 console.log(err);
@@ -56,7 +28,7 @@ const MyAppsPage = () => {
     }
 
     useEffect(() => {
-        getApplicationsByCreator();
+        getApplications();
     }, []);
 
     function searchAndSort() {
@@ -71,46 +43,39 @@ const MyAppsPage = () => {
             window.history.pushState({path: newUrl}, '', newUrl);
         }
 
-        getApplicationsByCreator();
-    }*/
+    }
 
     return (
         <div>
-            {Object.keys(creator).length !== 0 ? (
-                <div className={"my-apps"}>
-                    <div className={"my-apps-controls"}>
-                        <h1 className={"title"}>My Apps</h1>
-                        <Link to={`/creator/${id}/myApps/addApplication`}><FontAwesomeIcon className={"add-icon"} icon={faCirclePlus}/></Link>
-                        {/* <input className={"search-field"} type="text"  placeholder="Search" value={name} onChange={(e) => setName(e.target.value)}/>
-                        <div className={"dropdown"}>
-                            <select value={sort} onChange={(e) => setSort(e.target.value)}>
-                                <option value="nameAsc">Name Ascending</option>
-                                <option value="nameDesc">Name Descending</option>
-                                <option value="ratingAsc">Rating Ascending</option>
-                                <option value="ratingDesc">Rating Descending</option>
-                            </select>
-                            <FontAwesomeIcon className="dropdown-icon" icon={faCaretDown} />
-                        </div>
-                        <button className={"search-button"} type="button" onClick={searchAndSort}><FontAwesomeIcon icon={faMagnifyingGlass}/></button>*/}
+
+            <div className='my-apps'>
+                <div className='my-apps-controls'>
+                    <h1 className='title'>My Apps</h1>
+                    <Link to='/creator/username/myApps/addApplication'><FontAwesomeIcon className='add-icon'
+                                                                                        icon={faCirclePlus}/></Link>
+                    <input className='search-field' type='text' placeholder='Search' vale={name}
+                           onChange={(e) => setName(e.target.value)}/>
+                    <div className='dropdown'>
+                        <select value='sort' onChange={(e) => setSort(e.target.value)}>
+                            <option value="nameAsc">Name Ascending</option>
+                            <option value="nameDesc">Name Descending</option>
+                            <option value="ratingAsc">Rating Ascending</option>
+                            <option value="ratingDesc">Rating Descending</option>
+                        </select>
+                        <FontAwesomeIcon className="dropdown-icon" icon={faCaretDown}/>
                     </div>
-                    <hr/>
-                    <div className={"my-apps-list"}>
-                        { creator.applications.length > 0 ? (
-                            <>
-                                { creator.applications.map((app) => (
-                                    <Application key={app.name} name={app.name} icon={app.icon}/>
-                                )) }
-                            </>
-                        ) : (
-                            <p>Loading applications</p>
-                        ) }
-                    </div>
+                    <button className={"search-button"} type="button" onClick={searchAndSort}><FontAwesomeIcon
+                        icon={faMagnifyingGlass}/></button>
                 </div>
-            ) : (
-                <p>Access denied</p>
-            )}
+                <hr/>
+                <div className='my-apps-list'>
+                    {applicationsArray.myApplications && applicationsArray.myApplications.map((app) => (
+                        <ApplicationBasicCreator key={app.name} name={app.name} icon={app.icon}/>
+                    ))}
+                </div>
+            </div>
         </div>
     )
 }
 
-export default MyAppsPage
+export default MyAppsPage;

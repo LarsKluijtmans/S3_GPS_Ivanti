@@ -14,4 +14,5 @@ public interface ApplicationRepository extends MongoRepository<Application, Stri
 
     @Query("{creatorID:'?0'}")
     List<Application> findAllByCreatorID(String creatorID);
+
 }
