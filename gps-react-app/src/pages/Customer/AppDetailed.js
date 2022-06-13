@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCaretDown, faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons'
 import { FaStar } from 'react-icons/fa'
 
-const ApplicationDetailedPage = () => {
+const AppDetailed = () => {
     let params = useParams();
 
     const [application, setApplication] = useState({});
@@ -102,4 +102,4 @@ const ApplicationDetailedPage = () => {
   )
 }
 
-export default ApplicationDetailedPage
+export default AppDetailed

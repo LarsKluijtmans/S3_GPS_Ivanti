@@ -25,6 +25,5 @@ function LogInPage({login}){
         </div>
     );
    }
-
 export default LogInPage;
 

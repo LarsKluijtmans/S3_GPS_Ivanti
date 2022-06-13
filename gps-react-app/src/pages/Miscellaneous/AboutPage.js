@@ -1,4 +1,3 @@
-/*
 import React from "react";
 
 function AboutPage (){
@@ -17,4 +16,3 @@ function AboutPage (){
 };
 
 export default AboutPage;
-*/

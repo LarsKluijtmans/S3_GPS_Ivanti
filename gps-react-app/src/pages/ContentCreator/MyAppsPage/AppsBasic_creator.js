@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const ApplicationBasicCreator = ({ name, icon }) => {
+const AppsBasic_creator = ({ name, icon }) => {
   return (
     <Link className='application' to={`/creator/myApps/${name}`}>
         <img src={icon} />
@@ -10,4 +10,4 @@ const ApplicationBasicCreator = ({ name, icon }) => {
   )
 }
 
-export default ApplicationBasicCreator
+export default AppsBasic_creator

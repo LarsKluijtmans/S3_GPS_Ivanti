@@ -1,6 +1,6 @@
 import {registerables, Chart} from 'chart.js';
 import { Bar} from "react-chartjs-2";
-import {ratingArray} from "./components/RatingArray";
+import {ratingArray} from "./RatingArray";
 
 function Rating() {
     Chart.register(...registerables)

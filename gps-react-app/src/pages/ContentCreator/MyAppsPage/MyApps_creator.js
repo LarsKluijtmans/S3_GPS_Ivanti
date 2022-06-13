@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import Application from './components/Application'
 import axios from 'axios';
 import '../../../styles/ContentCreator/MyAppsPage/MyAppsPage.css';
 import { useParams, Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCaretDown, faCirclePlus, faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
-import ApplicationBasicCreator from './ApplicationBasicCreator';
+import AppsBasic_creator from './AppsBasic_creator';
 
-const MyAppsPage = () => {
+const MyApps_creator = () => {
     const [applicationsArray, setApplicationsArray] = useState({});
     const [name, setName] = useState('');
     const [sort, setSort] = useState('');
@@ -70,7 +69,7 @@ const MyAppsPage = () => {
                 <hr/>
                 <div className='my-apps-list'>
                     {applicationsArray.myApplications && applicationsArray.myApplications.map((app) => (
-                        <ApplicationBasicCreator key={app.name} name={app.name} icon={app.icon}/>
+                        <AppsBasic_creator key={app.name} name={app.name} icon={app.icon}/>
                     ))}
                 </div>
             </div>
@@ -78,4 +77,4 @@ const MyAppsPage = () => {
     )
 }
 
-export default MyAppsPage;
+export default MyApps_creator;

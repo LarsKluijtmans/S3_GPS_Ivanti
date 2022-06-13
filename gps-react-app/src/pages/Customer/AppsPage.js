@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import ApplicationBasic from './ApplicationBasic';
+import AppsBasic from './AppsBasic';
 
-const AllApplicationsPage = () => {
+const AppsPage = () => {
 
     const [applicationsArray, setApplicationArray] = useState([]);
     const [name, setName] = useState('');
@@ -45,7 +45,7 @@ const AllApplicationsPage = () => {
                 <hr/>
                 <div className='my-apps-list'>
                     { applicationsArray.applications && applicationsArray.applications.map((app) => (
-                        <ApplicationBasic key={app.name} name={app.name} icon={app.icon} />
+                        <AppsBasic key={app.name} name={app.name} icon={app.icon} />
                     ))}
                 </div>
             </div>
@@ -56,4 +56,4 @@ const AllApplicationsPage = () => {
   )
 }
 
-export default AllApplicationsPage
+export default AppsPage

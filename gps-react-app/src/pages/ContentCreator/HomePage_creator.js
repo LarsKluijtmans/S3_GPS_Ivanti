@@ -1,9 +1,9 @@
 import React from 'react';
 
-function HomePage (){
+function HomePage_creator (){
   return (
       <h1>Welcome to Ivanti App Market!</h1>
   );
 };
 
-export default HomePage;
+export default HomePage_creator;

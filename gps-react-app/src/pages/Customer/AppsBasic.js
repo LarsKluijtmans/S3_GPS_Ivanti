@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const ApplicationBasic = ({ name, icon }) => {
+const AppsBasic = ({ name, icon }) => {
   return (
     <Link className='application' to={`/app/${name}`}>
         <img src={icon} />
@@ -10,4 +10,4 @@ const ApplicationBasic = ({ name, icon }) => {
   )
 }
 
-export default ApplicationBasic
+export default AppsBasic

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {useNavigate, useParams} from "react-router-dom";
 
-function AddMajorVersionPage() {
+function AddMajorVersion_creator() {
 
     let navigate = useNavigate();
     useEffect(() => {
@@ -98,4 +98,4 @@ function AddMajorVersionPage() {
         </div>
     );
 }
-export default AddMajorVersionPage;
+export default AddMajorVersion_creator;

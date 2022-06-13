@@ -1,12 +1,12 @@
 import React, {useState} from "react";
-import "../../styles/ContentCreator/AddAndUpdateApplicationPage.css";
+import "../../../styles/ContentCreator/AddAndUpdateApplicationPage.css";
 import axios from 'axios';
 import ReactDOM from "react-dom";
-import {useParams, useNavigate} from "react-router-dom";
+import {useParams, useNavigate, Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCirclePlus, faPen} from "@fortawesome/free-solid-svg-icons";
 
-function AddApplicationPage() {
+function AddApp_creator() {
 
     let navigate = useNavigate();
 
@@ -214,7 +214,6 @@ function AddApplicationPage() {
             <div className={"app-controls"}>
                 <img className={"icon"} src={icon} alt={"application icon"}/>
                 <h1>{name}</h1>
-                <button className={"preview-button"}>Preview</button>
                 <button className={"done-button"} onClick={SaveApp}>Done</button>
             </div>
             <hr/>
@@ -259,4 +258,4 @@ function AddApplicationPage() {
     );
 }
 
-export default AddApplicationPage;
+export default AddApp_creator;

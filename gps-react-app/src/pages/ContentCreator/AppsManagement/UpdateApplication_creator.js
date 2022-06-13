@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
-import "../../styles/ContentCreator/AddAndUpdateApplicationPage.css";
+import "../../../styles/ContentCreator/AddAndUpdateApplicationPage.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCirclePlus, faPen} from '@fortawesome/free-solid-svg-icons'
 import ReactDOM from "react-dom";
 
-function UpdateApplicationPage() {
+function UpdateApplication_creator() {
 
     let navigate = useNavigate();
 
@@ -237,4 +237,4 @@ function UpdateApplicationPage() {
     }
 }
 
-export default UpdateApplicationPage;
+export default UpdateApplication_creator;

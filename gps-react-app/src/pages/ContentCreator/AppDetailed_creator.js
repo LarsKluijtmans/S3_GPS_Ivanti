@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { FaStar } from 'react-icons/fa'
-import '../../../styles/ContentCreator/ApplicationPage.css'
+import '../../styles/ContentCreator/ApplicationPage.css'
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCaretDown, faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons'
 /*import $ from 'jquery';*/
 
-const ApplicationPage = () => {
+const AppDetailed_creator = () => {
     const params = useParams();
 
     const [application, setApplication] = useState({});
@@ -127,4 +127,4 @@ const ApplicationPage = () => {
     )
 }
 
-export default ApplicationPage
+export default AppDetailed_creator

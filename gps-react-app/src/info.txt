@@ -25,24 +25,24 @@ In case of doubt use Misc! (So if we need to reorganize again we know where to c
         LogOutPage.js
 
     -- ContentCreator:
-        - ApplicationPage:
+        - AppDetailed_creator:
             - components:
                 - Rating:
                     - components:
                         RatingArray.js
                     Rating.js
-                Application.js
-            ApplicationPage.js
-        - MyAppsPage:
+                XApplication.js
+            AppDetailed_creator.js
+        - MyApps_creator:
             - components:
-                Application.js
-            MyAppsPage.js
-        AddApplicationPage.js
-        AddMajorVersionPage.js
-        AddMinorVersionPage.js
+                XApplication.js
+            MyApps_creator.js
+        AddApp_creator.js
+        AddMajorVersion_creator.js
+        AddMinorVersion_creator.js
         AnalyticsPage.js
-        HomePage.js
-        UpdateApplicationPage.js
+        HomePage_creator.js
+        UpdateApplication_creator.js
 
     -- Miscellaneous:
         AboutPage.js
@@ -51,7 +51,7 @@ In case of doubt use Misc! (So if we need to reorganize again we know where to c
         GetApplication.js
         Item.js
         List.js
-        AddMajorVersionPage.js
+        AddMajorVersion_creator.js
 ________________________________________________________________________________________________________________________
 
 STYLES
@@ -63,13 +63,13 @@ All style files goes here:
         ErrorPage.css
 
     -- ContentCreator:
-        - MyAppsPage:
+        - MyApps_creator:
             - components:
                 Application.css
-            MyAppsPage.css
+            MyApps_creator.css
         AddAndUpdateApplicationPage.css
         AnalyticsPage.css
-        ApplicationPage.css
+        AppDetailed_creator.css
 
     -- Miscellaneous:
         navElements.js

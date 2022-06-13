@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {useParams,useNavigate} from "react-router-dom";
 
-function AddMinorVersionPage() {
+function AddMinorVersion_creator() {
 
     let navigate = useNavigate();
     useEffect(() => {
@@ -101,4 +101,4 @@ function AddMinorVersionPage() {
     );
 }
 
-export default AddMinorVersionPage;
+export default AddMinorVersion_creator;
